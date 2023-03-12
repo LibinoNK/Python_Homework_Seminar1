@@ -11,18 +11,29 @@
 
 import math
 
-S = int(input("Сколько журавликов сделали ребята? "))
+#Вариант 1 (работает только при количестве журавликов кратном 6)
+S = int(input("Сколько журавликов нужно сделать ребятам? "))
 
 boys_cranes = S // 6
 kates_cranes = 4 * boys_cranes
 
-print(f"Петя и Сережа сделали по {boys_cranes} журавликов(-а) каждый, а Катя сделала {kates_cranes} журавликов(-а)")
+print(f"Петя и Сережа сделают по {boys_cranes} журавликов(-а) каждый, а Катя сделает {kates_cranes} журавликов(-а)")
 
-C = int(input("Сколько журавликов сделано на данный момент: "))
+#Вариант 2 (работает без условия кратности количества журавликов 6 + с условием, что они
+# делают журавликов в момент подсчета и указывается число полностью готовых)
+S = int(input("Сколько журавликов уже сделано? "))
 
-boys_birds = math.floor(C // 6)
-kates_birds = math.floor(4 * boys_birds)
-remains_birds = C - 2 * boys_birds - kates_birds
+if S % 6 == 0:
+    boy1 = S // 6
+    boy2 = S // 6
+    kate = boy1 * 4
+elif S % 6 > 3:
+    boy1 = math.ceil(S * 0.166667)
+    boy2 = math.ceil(S * 0.166667)
+    kate = math.floor(S * 0.666667)
+elif S % 6 <= 3:
+    boy1 = math.floor(S * 0.166667)
+    boy2 = math.floor(S * 0.166667)
+    kate = math.ceil(S * 0.666667)
 
-print(f"Петя и Сережа сделали по {boys_birds} журавликов(-а) каждый, а Катя сделала {kates_birds} журавликов(-а), "
-      f"а {remains_birds} еще в работе")
+print(f"Петя сделал {boy1}, Сережа {boy2} журавликов(-а), а Катя {kate} журавликов(-а)")
